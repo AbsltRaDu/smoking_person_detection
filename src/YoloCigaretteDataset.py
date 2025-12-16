@@ -39,12 +39,13 @@ def get_pos_neg_files(img_dir, label_dir, keep_class=0):
     return pos, neg
 
 class YoloCigaretteDataset(data.Dataset):
-    def __init__(self, img_dir, label_dir, img_files, transform=None, keep_class=0):
+    def __init__(self, img_dir, label_dir, img_files, transform=None, keep_class=0, RCNN=False):
         self.img_dir = img_dir
         self.label_dir = label_dir
         self.img_files = img_files
         self.transform = transform
         self.keep_class = keep_class
+        self.RCNN = RCNN
 
     def __len__(self):
         return len(self.img_files)
@@ -70,4 +71,39 @@ class YoloCigaretteDataset(data.Dataset):
         boxes = torch.tensor(boxes, dtype=torch.float32)
         if self.transform:
             img = self.transform(img)
+            
+        if self.RCNN:
+            H, W = img.shape[-2], img.shape[-1]
+            
+            boxes = {
+                'boxes': yolo_to_xyxy_pixels(boxes, H, W),
+                'labels': torch.ones(len(boxes), dtype=torch.int64)
+            }
+        
         return img, boxes
+
+def yolo_to_xyxy_pixels(boxes_cxcywh_norm: torch.Tensor, H: int, W: int) -> torch.Tensor:
+   
+    boxes = boxes_cxcywh_norm.float()
+    
+    if boxes.numel() == 0:
+        return boxes.new_zeros((0, 4))
+    
+    cx, cy, bw, bh = boxes.unbind(dim=1)
+
+    x1 = (cx - bw / 2) * W
+    y1 = (cy - bh / 2) * H
+    x2 = (cx + bw / 2) * W
+    y2 = (cy + bh / 2) * H
+
+    xyxy = torch.stack([x1, y1, x2, y2], dim=1)
+
+    # на всякий случай обрежем в пределах изображения
+    xyxy[:, 0].clamp_(0, W - 1)
+    xyxy[:, 2].clamp_(0, W - 1)
+    xyxy[:, 1].clamp_(0, H - 1)
+    xyxy[:, 3].clamp_(0, H - 1)
+
+    
+    
+    return xyxy
