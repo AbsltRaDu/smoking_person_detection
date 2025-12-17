@@ -42,6 +42,38 @@ streamlit run app.py
 2. Регрессия - предсказывает координаты бокса выделения
 
 ## Решение
+В целях оптимизации была загружена предобученная модель FasterRCNN с бэкбоном из ResNet50
+```
+weights = FasterRCNN_ResNet50_FPN_Weights.DEFAULT
+model = fasterrcnn_resnet50_fpn(weights=weights)
+```
+Мы заморозили все слои ResNet50 (бэкбона), кроме двух последних сверточных, чтобы дообучить их на наших данных
+```
+for p in model.backbone.parameters():
+    p.requires_grad = False # морожу все параметры / отключаю обучение
+for p in model.backbone.fpn.parameters():
+    p.requires_grad = True   # FPN обязательно нужно обучать!
+
+for p in model.backbone.body.layer3.parameters():
+    p.requires_grad = True
+for p in model.backbone.body.layer4.parameters():
+    p.requires_grad = True
+```
+
+В качестве метрики оценки качества модели была выбрана MAP50
+
+$$
+\[
+\text{mAP}_{50}
+= \frac{1}{N_{\text{classes}}}
+  \sum_{c=1}^{N_{\text{classes}}}
+  \left(
+    \int_{0}^{1} \text{Precision}_{c}\big(\text{Recall}_{c}\big) \, d(\text{Recall}_{c})
+  \right)
+\]
+$$
+
+## Результаты
 
 ### Faster RCNN (Region Based Convolutional Neural Networks)
 
@@ -57,6 +89,16 @@ streamlit run app.py
    3. Post-processing (NMS) - применение фильтрации по score
   
 Результаты работ модели Faster RCNN:
+<img width="288" height="482" alt="изображение" src="https://github.com/user-attachments/assets/d4d95c9d-6593-4058-948c-9d1917d6843a" />
+<img width="640" height="420" alt="изображение" src="https://github.com/user-attachments/assets/aac3f24c-975a-4fe4-a836-7faff385d48b" />
+<img width="327" height="482" alt="изображение" src="https://github.com/user-attachments/assets/1a87601f-6d37-43f1-a7bb-f2ee440b0c46" />
+<img width="597" height="482" alt="изображение" src="https://github.com/user-attachments/assets/e3dc7337-91ac-460b-8807-7f766ffab3b0" />
+<img width="341" height="482" alt="изображение" src="https://github.com/user-attachments/assets/b56daceb-5671-417e-89ea-e94c0d4cdf8c" />
+<img width="640" height="368" alt="изображение" src="https://github.com/user-attachments/assets/8b49c718-ab16-403c-a2e3-ea3877a48419" />
+
+Модель отрабатывает не без косяков: 
+
+На тестовых данных результат MAP получился: 63,1 %
 
 ### YOLOv8n
 1. Воспользуемся моделью YOLOv8n для детекции сигарет. Выбрали версию "nano", т.к. позволяет обучить модель на имеющихся вычислительных возможностях за приемлемое кол-во времени.
@@ -71,8 +113,6 @@ streamlit run app.py
 3. Head
    - Отвечает за генерацию окончательных прогнозов. В этой версии модели нет использования якорей (Anchor-free)
    - В YOLOv8 ветка для определения класса (что это?) и ветка для определения координат (где это?) разделены. Это значительно повышает точность локализации.
-
-
 
 ### Сравнительная таблица результатов обучения моделей
 
