@@ -169,8 +169,11 @@ model.train(
 ## Результаты YOLO
 Модель YOLO обучилась на большем числе эпох и обучилась значительно быстрее FRCNN
 
-![val_batch1_labels](https://github.com/user-attachments/assets/7fbba85c-1d62-4692-97d6-605d794ccfed)
-![val_batch1_pred](https://github.com/user-attachments/assets/0410768e-461f-41e8-b849-a84e909053b3)
+![val_batch0_labels](https://github.com/user-attachments/assets/f1962c2c-0eea-42bc-9f56-e48a444d46f3)
+![val_batch2_labels](https://github.com/user-attachments/assets/b9de8ce0-a427-4836-be59-a5c6c9f4904e)
+![val_batch1_pred](https://github.com/user-attachments/assets/fb4ae4a7-bbce-45e0-b92f-10a031fcd358)
+![val_batch1_labels](https://github.com/user-attachments/assets/c3df46a5-ce51-4780-9ba7-993e18d95398)
+![val_batch0_pred](https://github.com/user-attachments/assets/b71e19ca-1831-44d4-bc4f-20dbfa092c29)
 
 
 ## Сравнительная таблица результатов обучения моделей
