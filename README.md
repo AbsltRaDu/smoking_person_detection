@@ -62,7 +62,7 @@ for p in model.backbone.body.layer4.parameters():
 
 В качестве метрики оценки качества модели была выбрана MAP50
 
-$
+$$
 \[
 \text{mAP}_{50}
 = \frac{1}{N_{\text{classes}}}
@@ -71,7 +71,7 @@ $
     \int_{0}^{1} \text{Precision}_{c}\big(\text{Recall}_{c}\big) \, d(\text{Recall}_{c})
   \right)
 \]
-$
+$$
 
 ## Результаты
 
