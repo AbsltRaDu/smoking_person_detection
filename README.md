@@ -133,6 +133,7 @@ $$
 И фактически ее обучение закончилось на 3 эпохе. Дальше результаты по MAP50 уже не улучшались.
 
 Результаты работ модели Faster RCNN:
+
 <img width="288" height="482" alt="изображение" src="https://github.com/user-attachments/assets/d4d95c9d-6593-4058-948c-9d1917d6843a" />
 <img width="640" height="420" alt="изображение" src="https://github.com/user-attachments/assets/aac3f24c-975a-4fe4-a836-7faff385d48b" />
 <img width="327" height="482" alt="изображение" src="https://github.com/user-attachments/assets/1a87601f-6d37-43f1-a7bb-f2ee440b0c46" />
