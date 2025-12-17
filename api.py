@@ -6,7 +6,7 @@ from PIL import Image
 app = FastAPI()
 
 # Загружаем модель один раз при старте сервера
-model = YOLO("YOLO_480_results/best.pt") 
+model = YOLO("results_of_model/YOLO_480_results/best.pt") 
 
 @app.post("/predict")
 async def predict(file: UploadFile = File(...), conf: float = 0.3):
