@@ -170,11 +170,15 @@ model.train(
 ## Результаты YOLO
 Модель YOLO обучилась на большем числе эпох и обучилась значительно быстрее FRCNN
 
-![val_batch0_labels](https://github.com/user-attachments/assets/f1962c2c-0eea-42bc-9f56-e48a444d46f3)
-![val_batch2_labels](https://github.com/user-attachments/assets/b9de8ce0-a427-4836-be59-a5c6c9f4904e)
-![val_batch1_pred](https://github.com/user-attachments/assets/fb4ae4a7-bbce-45e0-b92f-10a031fcd358)
-![val_batch1_labels](https://github.com/user-attachments/assets/c3df46a5-ce51-4780-9ba7-993e18d95398)
-![val_batch0_pred](https://github.com/user-attachments/assets/b71e19ca-1831-44d4-bc4f-20dbfa092c29)
+<img width="180" height="101" alt="изображение" src="https://github.com/user-attachments/assets/f331ac66-0dfb-49a8-b73d-c3ba0e26e001" />
+<img width="506" height="363" alt="изображение" src="https://github.com/user-attachments/assets/e5e08e3d-bf79-4d43-a851-45981b9b0fca" />
+<img width="1000" height="1500" alt="изображение" src="https://github.com/user-attachments/assets/3b3e0f0d-74ba-4904-b2b4-1cae281cf8b9" />
+<img width="1460" height="821" alt="изображение" src="https://github.com/user-attachments/assets/714b8e42-8a14-4178-af65-0faf3f7d6493" />
+<img width="1023" height="685" alt="изображение" src="https://github.com/user-attachments/assets/b40c9710-867e-44f4-bc46-0f22991ccdd8" />
+<img width="640" height="640" alt="изображение" src="https://github.com/user-attachments/assets/b68ab5df-1f4e-4192-b182-8f44c56044b0" />
+<img width="1023" height="685" alt="изображение" src="https://github.com/user-attachments/assets/fecdec9b-585d-4ca3-a610-a22c19d6d4b3" />
+<img width="500" height="750" alt="изображение" src="https://github.com/user-attachments/assets/67f5cd4b-1169-45ad-9134-7f9b0b8917f7" />
+
 
 
 ## Сравнительная таблица результатов обучения моделей
